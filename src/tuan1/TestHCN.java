@@ -2,7 +2,7 @@ package tuan1;
 
 import java.util.Scanner;
 
-public class Test {
+public class TestHCN {
 	public static HinhChuNhat nhapCung() {
 		HinhChuNhat hcn1 = new HinhChuNhat();
 		hcn1.setChieuDai(5);
