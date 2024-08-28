@@ -16,8 +16,7 @@ public class TestHCN {
 	public static void main(String[] args) {
 		nhapCung();
 		
-		System.out.println(nhapCung());
-		System.out.println(nhapCung());
+		System.out.println("Dien tich hinh chu nhat la: " + nhapCung());
 //		Scanner sc = new Scanner(System.in);
 //		System.out.println("Nhap vao pham mem");
 //		System.out.println("Nhap vao chieu dai");
