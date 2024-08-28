@@ -29,6 +29,7 @@ public class TestAccount {
 				System.out.println("\nDanh sách tài khoản:");
 				if (accounts.isEmpty()) {
 					System.out.println("Không có tài khoản nào.");
+					System.out.println("---------------------------------------------------");
 				} else {
 					for (Account acc : accounts) {
 						System.out.println(acc);
@@ -49,6 +50,7 @@ public class TestAccount {
 				Account newAccount = new Account(stk, name, balance);
 				accounts.add(newAccount);
 				System.out.println("Thêm tài khoản thành công.");
+				System.out.println("---------------------------------------------------");
 				break;
 
 			case 3:
@@ -62,11 +64,13 @@ public class TestAccount {
 						accounts.remove(acc);
 						found = true;
 						System.out.println("Xóa tài khoản thành công.");
+						System.out.println("---------------------------------------------------");
 						break;
 					}
 				}
 				if (!found) {
 					System.out.println("Không tìm thấy tài khoản với số tài khoản đã nhập.");
+					System.out.println("---------------------------------------------------");
 				}
 				break;
 
@@ -93,14 +97,16 @@ public class TestAccount {
 					accountToEdit.setName(newName);
 					accountToEdit.setBalance(newBalance);
 					System.out.println("Sửa thông tin tài khoản thành công.");
+					System.out.println("---------------------------------------------------");
 				} else {
 					System.out.println("Không tìm thấy tài khoản với số tài khoản đã nhập.");
+					System.out.println("---------------------------------------------------");
 				}
 				break;
 
 			case 5:
 				// Tính lãi suất cho tài khoản
-				System.out.print("Nhập số tài khoản cần tính lãi: ");
+				System.out.print("Nhập số tài khoản cần đáo hạn: ");
 				long stkToMaturity = scanner.nextLong();
 				boolean foundMaturity = false;
 
@@ -108,23 +114,27 @@ public class TestAccount {
 					if (acc.getStk() == stkToMaturity) {
 						acc.maturity();
 						foundMaturity = true;
-						System.out.println("Tính lãi suất thành công.");
+						System.out.println("Đáo hạn suất thành công.");
+						System.out.println("---------------------------------------------------");
 						break;
 					}
 				}
 				if (!foundMaturity) {
 					System.out.println("Không tìm thấy tài khoản với số tài khoản đã nhập.");
+					System.out.println("---------------------------------------------------");
 				}
 				break;
 
 			case 6:
 				// Thoát chương trình
 				System.out.println("Thoát chương trình.");
+				System.out.println("---------------------------------------------------");
 				scanner.close();
 				System.exit(0);
 
 			default:
 				System.out.println("Lựa chọn không hợp lệ. Vui lòng chọn lại.");
+				System.out.println("---------------------------------------------------");
 			}
 		}
 	}
