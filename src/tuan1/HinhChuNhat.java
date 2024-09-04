@@ -8,7 +8,6 @@ public class HinhChuNhat {
 	private double chieuDai;
 	private double chieuRong;
 	private double dienTich;
-		
 	public HinhChuNhat(double chieuDai, double chieuRong) {
 		if (chieuDai>0) {
 			this.chieuDai = chieuDai;

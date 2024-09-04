@@ -1,4 +1,4 @@
-package tuan2_account;
+package tuan2.acount;
 
 import java.util.ArrayList; // Nhập khẩu lớp ArrayList
 import java.util.List; // Nhập khẩu lớp List

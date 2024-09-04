@@ -1,4 +1,4 @@
-package tuan2_Xe;
+package tuan2.xe;
 
 
 public class Vehicle {
