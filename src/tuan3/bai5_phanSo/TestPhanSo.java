@@ -6,20 +6,17 @@ public class TestPhanSo {
 	public static void nhapPhanSo() {
 		Scanner scanner = new Scanner(System.in);
 
-        // Nhập phân số đầu tiên
         System.out.print("Nhập tử số của phân số đầu tiên: ");
         int tuSo1 = scanner.nextInt();
         System.out.print("Nhập mẫu số của phân số đầu tiên: ");
         int mauSo1 = scanner.nextInt();
         PhanSo ps1 = new PhanSo(tuSo1, mauSo1);
 
-        // Nhập phân số thứ hai
         System.out.print("Nhập tử số của phân số thứ hai: ");
         int tuSo2 = scanner.nextInt();
         System.out.print("Nhập mẫu số của phân số thứ hai: ");
         int mauSo2 = scanner.nextInt();
         PhanSo ps2 = new PhanSo(tuSo2, mauSo2);
-     // Thực hiện phép toán
         System.out.println("Phân số đầu tiên: " + ps1);
         System.out.println("Phân số thứ hai: " + ps2);
 

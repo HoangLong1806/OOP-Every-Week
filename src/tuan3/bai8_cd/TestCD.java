@@ -7,7 +7,7 @@ public class TestCD {
 	public static void nhapCD() {
 
 		Scanner scanner = new Scanner(System.in);
-		CDList cdList = new CDList(2); 
+		CDList cdList = new CDList(2);
 		while (true) {
 
 			System.out.print("Chọn chức năng: ");
@@ -16,7 +16,7 @@ public class TestCD {
 
 			switch (chucNang) {
 			case 1:
-				
+
 				System.out.println("\t Nhập 2 CD: ");
 				for (int i = 1; i < 3; i++) {
 					System.out.print("Nhập mã CD: " + (i) + ": ");
@@ -82,7 +82,6 @@ public class TestCD {
 
 	public static void main(String[] args) {
 		menu();
-
 		nhapCD();
 	}
 }

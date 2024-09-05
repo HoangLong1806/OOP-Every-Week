@@ -59,7 +59,7 @@ public class CD {
 
     @Override
     public String toString() {
-        return String.format("%-10s %-20s %-20s %-10s %-10.2f", 
+        return String.format("%-10s %-20s %-20s %-15s %-20.2f", 
             maCD, tuaCD, caSy, soBaiHat, giaThanh);
     }
 

@@ -17,7 +17,6 @@ public class PhanSo {
         reduce(); // Tối giản phân số ngay khi khởi tạo
     }
 
-    // Tối giản phân số
     private void reduce() {
         int gcd = gcd(tuSo, mauSo);
         tuSo /= gcd;
