@@ -56,7 +56,12 @@ public class SinhVien {
 
     // Kiểm tra số điện thoại hợp lệ
     private boolean validateSoDienThoai(String soDienThoai) {
-        return soDienThoai != null && soDienThoai.matches("\\d{7}");
+		if (soDienThoai.length()< 10) {
+			System.out.println("Số điện thoại phải có 10 chữ số");
+			return false;
+		}else
+			return soDienThoai != null && soDienThoai.matches("\\d{10}");
+        
     }
 
     // Override phương thức toString

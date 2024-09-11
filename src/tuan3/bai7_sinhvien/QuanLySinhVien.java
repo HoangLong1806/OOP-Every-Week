@@ -27,7 +27,7 @@ public class QuanLySinhVien {
 			System.out.print("Địa chỉ: ");
 			String diaChi = scanner.nextLine();
 
-			System.out.print("Số điện thoại (7 chữ số): ");
+			System.out.print("Số điện thoại (10 chữ số): ");
 			String soDienThoai = scanner.nextLine();
 
 			sinhViens[i] = new SinhVien(maSinhVien, hoTen, diaChi, soDienThoai);
