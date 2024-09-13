@@ -1,4 +1,4 @@
-package tuan4.bai1;
+package tuan4.bai1_ChuyenXe_Md3;
 
 import java.util.Scanner;
 

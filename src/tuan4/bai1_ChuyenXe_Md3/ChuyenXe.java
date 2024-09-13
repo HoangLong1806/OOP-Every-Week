@@ -1,11 +1,11 @@
-package tuan4.bai1;
+package tuan4.bai1_ChuyenXe_Md3;
 
 import java.text.DecimalFormat;
 import java.util.Objects;
 
 
 
-public class ChuyenXe {
+public abstract class ChuyenXe {
 	protected String maChuyenXe;
 	protected String hoTen;
 	protected int soXe;

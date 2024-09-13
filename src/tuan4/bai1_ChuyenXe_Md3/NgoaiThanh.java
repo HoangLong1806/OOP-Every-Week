@@ -1,4 +1,4 @@
-package tuan4.bai1;
+package tuan4.bai1_ChuyenXe_Md3;
 
 import java.text.DecimalFormat;
 
@@ -6,7 +6,7 @@ public class NgoaiThanh  extends ChuyenXe{
 	private String noiDen;
 	private int soNgayDiDuoc;
 
-	// ------------------ contructor đầy đủ tham số-----------------------------------------
+	
 
 	public NgoaiThanh(String maChuyenXe, String hoTen, int soXe, double doanhThu, String noiDen, int soNgayDiDuoc) {
 		super(maChuyenXe, hoTen, soXe, doanhThu);
