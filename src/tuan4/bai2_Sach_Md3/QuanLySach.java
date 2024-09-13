@@ -37,6 +37,8 @@ public class QuanLySach {
     public void xuatDanhSachSach() {
         try {
             for (Sach sach : danhSachSach) {
+//            	sach.getTieuDe();
+            	System.out.println(sach.toString());
                 sach.xuatSach();
                 System.out.println("Thành tiền: " + sach.thanhTien());
                 System.out.println("--------------------");
@@ -90,4 +92,12 @@ public class QuanLySach {
             System.out.println("Lỗi khi xuất sách giáo khoa của nhà xuất bản " + nhaXuatBan + ": " + e.getMessage());
         }
     }
+
+	public void themSach(Sach sach1) {
+		// TODO Auto-generated method stub
+		if (sach1 != null) {
+			danhSachSach.add(sach1);
+		}
+		
+	}
 }

@@ -1,6 +1,7 @@
 package tuan4.bai2_Sach_Md3;
 
 import java.util.Date;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
@@ -21,7 +22,47 @@ public class Sach {
         this.nhaXuatBan = nhaXuatBan;
     }
 
-    public void nhapSach(Scanner scanner) {
+    public String getMaSach() {
+		return maSach;
+	}
+
+	public void setMaSach(String maSach) {
+		this.maSach = maSach;
+	}
+
+	public Date getNgayNhap() {
+		return ngayNhap;
+	}
+
+	public void setNgayNhap(int year, int month, int day) {
+		ngayNhap = new Date(year - 1900, month - 1, day);	
+	}
+
+	public double getDonGia() {
+		return donGia;
+	}
+
+	public void setDonGia(double donGia) {
+		this.donGia = donGia;
+	}
+
+	public int getSoLuong() {
+		return soLuong;
+	}
+
+	public void setSoLuong(int soLuong) {
+		this.soLuong = soLuong;
+	}
+
+	public String getNhaXuatBan() {
+		return nhaXuatBan;
+	}
+
+	public void setNhaXuatBan(String nhaXuatBan) {
+		this.nhaXuatBan = nhaXuatBan;
+	}
+
+	public void nhapSach(Scanner scanner) {
         try {
             System.out.print("Nhập mã sách: ");
             maSach = scanner.nextLine();
@@ -59,4 +100,17 @@ public class Sach {
     public double thanhTien() {
         return 0;
     }
+    
+	public static void getTieuDe() {
+		System.out.println(String.format("|%-10s|%-15s|%-15s|%-10s|%-20s|", "Mã sách", "Ngày nhập", "Đơn giá",
+				"Số lượng", "Nhà xuất bản"));
+	}
+    @Override
+	public String toString() {
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		DecimalFormat df = new DecimalFormat("#,##0.00VND");
+		String dongiaString = df.format(donGia);
+		String str1 = simpleDateFormat.format(ngayNhap);
+		return String.format("|%-10s|%-15s|%-15s|%-10d|%-20s|", maSach, str1, dongiaString, soLuong, nhaXuatBan);
+	}
 }

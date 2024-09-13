@@ -49,4 +49,22 @@ public class SachGiaoKhoa extends Sach {
             return 0;
         }
     }
+    
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("| Mã sách      | Ngày nhập   | Đơn giá  | Số lượng | Nhà xuất bản  | Tình trạng |\n");
+        sb.append("|--------------|-------------|----------|----------|---------------|------------|\n");
+        
+        sb.append(String.format("| %-12s | %-11s | %-8.2f | %-8d | %-13s | %-10s |\n", 
+            maSach, 
+            new java.text.SimpleDateFormat("dd/MM/yyyy").format(ngayNhap), 
+            donGia, 
+            soLuong, 
+            nhaXuatBan, 
+            tinhTrang
+        ));
+        return sb.toString();
+    }
+
 }

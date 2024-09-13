@@ -45,4 +45,10 @@ public class SachThamKhao extends Sach {
             return 0;
         }
     }
+
+	@Override
+	public String toString() {
+		return "SachThamKhao [thue=" + thue + "]";
+	}
+    
 }
