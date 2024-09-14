@@ -8,8 +8,9 @@ public class TestSach {
 		Date ngayNhap = new Date(2021 - 1900, 9 - 1, 10);
 		Sach sach1 = new SachGiaoKhoa("A123", ngayNhap, 10000, 5, "NXB1", "moi");
 		Sach sach2 = new SachThamKhao("B123", ngayNhap, 20000, 3, "NXB2", 0.1);
-		System.out.println(sach1.toString());
-		System.out.println(sach2.toString());
+		System.out.printf(sach1.toString());
+		System.out.printf(sach2.toString());
+	
 		
 		
 	}

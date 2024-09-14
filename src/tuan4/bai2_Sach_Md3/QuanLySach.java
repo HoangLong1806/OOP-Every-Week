@@ -93,10 +93,10 @@ public class QuanLySach {
         }
     }
 
-	public void themSach(Sach sach1) {
+	public void themSach(Sach sach) {
 		// TODO Auto-generated method stub
-		if (sach1 != null) {
-			danhSachSach.add(sach1);
+		if (sach != null) {
+			danhSachSach.add(sach);
 		}
 		
 	}

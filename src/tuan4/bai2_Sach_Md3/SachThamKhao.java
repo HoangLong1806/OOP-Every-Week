@@ -46,9 +46,25 @@ public class SachThamKhao extends Sach {
         }
     }
 
-	@Override
-	public String toString() {
-		return "SachThamKhao [thue=" + thue + "]";
-	}
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("| Mã sách      | Ngày nhập   | Đơn giá  | Số lượng | Nhà xuất bản  | Thuế      | Thành tiền  |\n");
+        sb.append("|--------------|-------------|----------|----------|---------------|-----------|-------------|\n");
+        
+        sb.append(String.format(
+            "| %-12s | %-11s | %-8.2f | %-8d | %-13s | %-9.2f | %-11.2f |\n", 
+            maSach, 
+            new java.text.SimpleDateFormat("dd/MM/yyyy").format(ngayNhap), 
+            donGia, 
+            soLuong, 
+            nhaXuatBan, 
+            thue, 
+            thanhTien()  // Tính thành tiền trực tiếp từ phương thức thanhTien()
+        ));
+        return sb.toString();
+    }
+
+
     
 }
