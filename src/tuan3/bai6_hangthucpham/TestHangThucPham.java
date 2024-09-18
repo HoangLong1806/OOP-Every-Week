@@ -3,8 +3,8 @@ package tuan3.bai6_hangthucpham;
 import java.util.Scanner;
 
 public class TestHangThucPham {
-	public static void nhapThongTinHangThucPham() {
-		Scanner scanner = new Scanner(System.in);
+    public static void nhapThongTinHangThucPham() {
+        Scanner scanner = new Scanner(System.in);
 
         // Nhập thông tin hàng hóa
         System.out.print("Nhập mã hàng: ");
@@ -34,9 +34,9 @@ public class TestHangThucPham {
         System.out.println("Hàng hóa đã hết hạn chưa? " + (hangThucPham.isExpired() ? "Có" : "Không"));
 
         scanner.close();
-	}
+    }
+
     public static void main(String[] args) {
         nhapThongTinHangThucPham();
     }
 }
-

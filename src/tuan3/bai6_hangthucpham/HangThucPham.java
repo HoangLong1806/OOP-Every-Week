@@ -1,21 +1,21 @@
 package tuan3.bai6_hangthucpham;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.text.DecimalFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class HangThucPham {
     private static final String DEFAULT_MA_HANG = "UNKNOWN";
     private static final String DEFAULT_TEN_HANG = "UNKNOWN";
     private static final double DEFAULT_DON_GIA = 0.0;
-    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
+    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     private String maHang;
     private String tenHang;
     private double donGia;
-    private Date ngaySanXuat;
-    private Date ngayHetHan;
+    private LocalDate ngaySanXuat;
+    private LocalDate ngayHetHan;
 
     // Constructor đầy đủ tham số
     public HangThucPham(String maHang, String tenHang, double donGia, String ngaySanXuat, String ngayHetHan) {
@@ -31,7 +31,7 @@ public class HangThucPham {
 
     // Constructor với tham số mã hàng
     public HangThucPham(String maHang) {
-        this(maHang, DEFAULT_TEN_HANG, DEFAULT_DON_GIA, DATE_FORMAT.format(new Date()), DATE_FORMAT.format(new Date()));
+        this(maHang, DEFAULT_TEN_HANG, DEFAULT_DON_GIA, LocalDate.now().format(DATE_FORMAT), LocalDate.now().format(DATE_FORMAT));
     }
 
     // Setters
@@ -48,7 +48,7 @@ public class HangThucPham {
     }
 
     public void setNgaySanXuat(String ngaySanXuat) {
-        Date parsedDate = parseDate(ngaySanXuat);
+        LocalDate parsedDate = parseDate(ngaySanXuat);
         if (parsedDate != null) {
             this.ngaySanXuat = parsedDate;
             if (this.ngayHetHan != null && !isValidNgayHetHan(this.ngaySanXuat, this.ngayHetHan)) {
@@ -58,7 +58,7 @@ public class HangThucPham {
     }
 
     public void setNgayHetHan(String ngayHetHan) {
-        Date parsedDate = parseDate(ngayHetHan);
+        LocalDate parsedDate = parseDate(ngayHetHan);
         if (parsedDate != null && isValidNgayHetHan(this.ngaySanXuat, parsedDate)) {
             this.ngayHetHan = parsedDate;
         } else {
@@ -80,15 +80,15 @@ public class HangThucPham {
     }
 
     public String getNgaySanXuat() {
-        return DATE_FORMAT.format(ngaySanXuat);
+        return ngaySanXuat.format(DATE_FORMAT);
     }
 
     public String getNgayHetHan() {
-        return DATE_FORMAT.format(ngayHetHan);
+        return ngayHetHan.format(DATE_FORMAT);
     }
 
     public boolean isExpired() {
-        return ngayHetHan.before(new Date());
+        return ngayHetHan.isBefore(LocalDate.now());
     }
 
     @Override
@@ -110,14 +110,14 @@ public class HangThucPham {
         return donGia > 0;
     }
 
-    private boolean isValidNgayHetHan(Date ngaySanXuat, Date ngayHetHan) {
-        return ngayHetHan != null && ngaySanXuat != null && ngayHetHan.after(ngaySanXuat);
+    private boolean isValidNgayHetHan(LocalDate ngaySanXuat, LocalDate ngayHetHan) {
+        return ngayHetHan != null && ngaySanXuat != null && ngayHetHan.isAfter(ngaySanXuat);
     }
 
-    private Date parseDate(String dateString) {
+    private LocalDate parseDate(String dateString) {
         try {
-            return DATE_FORMAT.parse(dateString);
-        } catch (ParseException e) {
+            return LocalDate.parse(dateString, DATE_FORMAT);
+        } catch (DateTimeParseException e) {
             return null;
         }
     }
