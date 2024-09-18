@@ -1,41 +1,77 @@
 package tuan4.bai2_Sach_Md3;
 
-import java.util.Date;
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Sach {
-    protected String maSach;
-    protected Date ngayNhap;
-    protected double donGia;
-    protected int soLuong;
-    protected String nhaXuatBan;
+	protected String maSach;
+	protected LocalDate ngayNhap;
+	protected double donGia;
+	protected int soLuong;
+	protected String nhaXuatBan;
 
-    public Sach() {}
+	public Sach() {
+	}
 
-    public Sach(String maSach, Date ngayNhap, double donGia, int soLuong, String nhaXuatBan) {
-        this.maSach = maSach;
-        this.ngayNhap = ngayNhap;
-        this.donGia = donGia;
-        this.soLuong = soLuong;
-        this.nhaXuatBan = nhaXuatBan;
-    }
+	public Sach(String maSach, LocalDate ngayNhap, double donGia, int soLuong, String nhaXuatBan) {
+		this.maSach = maSach;
+		this.ngayNhap = ngayNhap;
+		this.donGia = donGia;
+		this.soLuong = soLuong;
+		this.nhaXuatBan = nhaXuatBan;
+	}
 
-    public String getMaSach() {
+	public LocalDate getNgayNhap() {
+		return ngayNhap;
+	}
+
+	public void setNgayNhap(int year, int month, int day) {
+		this.ngayNhap = LocalDate.of(year, month, day);
+	}
+
+	public void nhapSach(Scanner scanner) {
+		try {
+			System.out.print("Nhập mã sách: ");
+			maSach = scanner.nextLine();
+
+			System.out.print("Nhập ngày nhập (dd/MM/yyyy): ");
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			ngayNhap = LocalDate.parse(scanner.nextLine(), formatter);
+
+			System.out.print("Nhập đơn giá: ");
+			donGia = Double.parseDouble(scanner.nextLine());
+
+			System.out.print("Nhập số lượng: ");
+			soLuong = Integer.parseInt(scanner.nextLine());
+
+			System.out.print("Nhập nhà xuất bản: ");
+			nhaXuatBan = scanner.nextLine();
+		} catch (Exception e) {
+			System.out.println("Lỗi khi nhập dữ liệu: " + e.getMessage());
+		}
+	}
+
+	public void xuatSach() {
+		try {
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			System.out.println("Mã sách: " + maSach);
+			System.out.println("Ngày nhập: " + ngayNhap.format(formatter));
+			System.out.println("Đơn giá: " + donGia);
+			System.out.println("Số lượng: " + soLuong);
+			System.out.println("Nhà xuất bản: " + nhaXuatBan);
+		} catch (Exception e) {
+			System.out.println("Lỗi khi xuất dữ liệu: " + e.getMessage());
+		}
+	}
+
+	public String getMaSach() {
 		return maSach;
 	}
 
 	public void setMaSach(String maSach) {
 		this.maSach = maSach;
-	}
-
-	public Date getNgayNhap() {
-		return ngayNhap;
-	}
-
-	public void setNgayNhap(int year, int month, int day) {
-		ngayNhap = new Date(year - 1900, month - 1, day);	
 	}
 
 	public double getDonGia() {
@@ -62,55 +98,21 @@ public class Sach {
 		this.nhaXuatBan = nhaXuatBan;
 	}
 
-	public void nhapSach(Scanner scanner) {
-        try {
-            System.out.print("Nhập mã sách: ");
-            maSach = scanner.nextLine();
-            
-            System.out.print("Nhập ngày nhập (dd/MM/yyyy): ");
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            ngayNhap = sdf.parse(scanner.nextLine());
-            
-            System.out.print("Nhập đơn giá: ");
-            donGia = Double.parseDouble(scanner.nextLine());
-
-            System.out.print("Nhập số lượng: ");
-            soLuong = Integer.parseInt(scanner.nextLine());
-
-            System.out.print("Nhập nhà xuất bản: ");
-            nhaXuatBan = scanner.nextLine();
-        } catch (Exception e) {
-            System.out.println("Lỗi khi nhập dữ liệu: " + e.getMessage());
-        }
-    }
-
-    public void xuatSach() {
-        try {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            System.out.println("Mã sách: " + maSach);
-            System.out.println("Ngày nhập: " + sdf.format(ngayNhap));
-            System.out.println("Đơn giá: " + donGia);
-            System.out.println("Số lượng: " + soLuong);
-            System.out.println("Nhà xuất bản: " + nhaXuatBan);
-        } catch (Exception e) {
-            System.out.println("Lỗi khi xuất dữ liệu: " + e.getMessage());
-        }
-    }
-
-    public double thanhTien() {
-        return 0;
-    }
-    
-	public static void getTieuDe() {
-		System.out.println(String.format("|%-10s|%-15s|%-15s|%-10s|%-20s|", "Mã sách", "Ngày nhập", "Đơn giá",
-				"Số lượng", "Nhà xuất bản"));
+	public void setNgayNhap(LocalDate ngayNhap) {
+		this.ngayNhap = ngayNhap;
 	}
-    @Override
+
+	@Override
 	public String toString() {
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		DecimalFormat df = new DecimalFormat("#,##0.00VND");
-		String dongiaString = df.format(donGia);
-		String str1 = simpleDateFormat.format(ngayNhap);
-		return String.format("|%-10s|%-15s|%-15s|%-10d|%-20s|", maSach, str1, dongiaString, soLuong, nhaXuatBan);
+		String formattedDonGia = df.format(donGia);
+		return String.format("|%-10s|%-15s|%-15s|%-10d|%-20s|", maSach, ngayNhap.format(formatter), formattedDonGia,
+				soLuong, nhaXuatBan);
+	}
+
+	public double thanhTien() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

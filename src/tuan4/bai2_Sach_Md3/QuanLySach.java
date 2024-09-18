@@ -1,15 +1,17 @@
 package tuan4.bai2_Sach_Md3;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class QuanLySach {
-	private ArrayList<Sach> danhSachSach;
+    private ArrayList<Sach> danhSachSach;
 
     public QuanLySach() {
         danhSachSach = new ArrayList<>();
     }
 
+    // Method to input a list of books
     public void nhapDanhSachSach(Scanner scanner) {
         try {
             System.out.print("Nhập số lượng sách: ");
@@ -34,12 +36,11 @@ public class QuanLySach {
         }
     }
 
+    // Method to output the list of books
     public void xuatDanhSachSach() {
         try {
             for (Sach sach : danhSachSach) {
-//            	sach.getTieuDe();
-            	System.out.println(sach.toString());
-                sach.xuatSach();
+                System.out.println(sach.toString());
                 System.out.println("Thành tiền: " + sach.thanhTien());
                 System.out.println("--------------------");
             }
@@ -48,6 +49,7 @@ public class QuanLySach {
         }
     }
 
+    // Method to calculate the total value of textbooks (Sach Giao Khoa)
     public double tongThanhTienSachGiaoKhoa() {
         try {
             double tong = 0;
@@ -63,13 +65,14 @@ public class QuanLySach {
         }
     }
 
+    // Method to calculate the average price of reference books (Sach Tham Khao)
     public double trungBinhDonGiaSachThamKhao() {
         try {
             double tongDonGia = 0;
             int soLuongSachThamKhao = 0;
             for (Sach sach : danhSachSach) {
                 if (sach instanceof SachThamKhao) {
-                    tongDonGia += sach.donGia;
+                    tongDonGia += sach.getDonGia();
                     soLuongSachThamKhao++;
                 }
             }
@@ -80,10 +83,11 @@ public class QuanLySach {
         }
     }
 
+    // Method to output textbooks from a specific publisher
     public void xuatSachGiaoKhoaNhaXuatBan(String nhaXuatBan) {
         try {
             for (Sach sach : danhSachSach) {
-                if (sach instanceof SachGiaoKhoa && sach.nhaXuatBan.equalsIgnoreCase(nhaXuatBan)) {
+                if (sach instanceof SachGiaoKhoa && sach.getNhaXuatBan().equalsIgnoreCase(nhaXuatBan)) {
                     sach.xuatSach();
                     System.out.println("--------------------");
                 }
@@ -93,11 +97,10 @@ public class QuanLySach {
         }
     }
 
-	public void themSach(Sach sach) {
-		// TODO Auto-generated method stub
-		if (sach != null) {
-			danhSachSach.add(sach);
-		}
-		
-	}
+    // Method to add a book to the list
+    public void themSach(Sach sach) {
+        if (sach != null) {
+            danhSachSach.add(sach);
+        }
+    }
 }

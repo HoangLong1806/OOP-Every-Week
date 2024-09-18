@@ -87,12 +87,10 @@ public class HangThucPham {
         return DATE_FORMAT.format(ngayHetHan);
     }
 
-    // Kiểm tra hết hạn
     public boolean isExpired() {
         return ngayHetHan.before(new Date());
     }
 
-    // Phương thức toString
     @Override
     public String toString() {
         DecimalFormat df = new DecimalFormat("#,###.00");
@@ -100,7 +98,6 @@ public class HangThucPham {
                 maHang, tenHang, df.format(donGia), getNgaySanXuat(), getNgayHetHan());
     }
 
-    // Phương thức hỗ trợ kiểm tra dữ liệu hợp lệ
     private boolean validateMaHang(String maHang) {
         return maHang != null && !maHang.trim().isEmpty();
     }
