@@ -7,7 +7,7 @@ public class TestSach {
 
     // Function to provide some hardcoded input (for testing purposes)
     static void nhapCung() {
-        LocalDate ngayNhap = LocalDate.of(2021, 9, 10);  // Using LocalDate instead of Date
+        LocalDate ngayNhap = LocalDate.of(2021, 9, 10); 
         Sach sach1 = new SachGiaoKhoa("A123", ngayNhap, 10000, 5, "NXB1", "moi");
         Sach sach2 = new SachThamKhao("B123", ngayNhap, 20000, 3, "NXB2", 0.1);
         
@@ -35,6 +35,7 @@ public class TestSach {
         boolean running = true;
 
         while (running) {
+        	
             try {
                 menu();
                 int choice = Integer.parseInt(scanner.nextLine());
@@ -69,10 +70,11 @@ public class TestSach {
                         System.out.println("Lựa chọn không hợp lệ. Vui lòng chọn lại.");
                         break;
                 }
+                
             } catch (Exception e) {
                 System.out.println("Lỗi: " + e.getMessage());
             }
-            System.out.println("--------------------");
+           
         }
         scanner.close();
     }

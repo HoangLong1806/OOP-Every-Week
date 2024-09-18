@@ -41,8 +41,8 @@ public class QuanLySach {
         try {
             for (Sach sach : danhSachSach) {
                 System.out.println(sach.toString());
-                System.out.println("Thành tiền: " + sach.thanhTien());
-                System.out.println("--------------------");
+//                System.out.println("Thành tiền: " + sach.thanhTien());
+//                System.out.println("--------------------");
             }
         } catch (Exception e) {
             System.out.println("Lỗi khi xuất danh sách sách: " + e.getMessage());

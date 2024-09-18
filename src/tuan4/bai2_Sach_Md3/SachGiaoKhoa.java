@@ -59,6 +59,7 @@ public class SachGiaoKhoa extends Sach {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
+        sb.append("---------------------------------------------------------------------------------------------\n");
         sb.append("| Mã sách      | Ngày nhập   | Đơn giá  | Số lượng | Nhà xuất bản  | Tình trạng | Thành tiền  |\n");
         sb.append("|--------------|-------------|----------|----------|---------------|------------|-------------|\n");
 
