@@ -123,5 +123,14 @@ public class QuanLySach {
         System.out.println("Danh sách sách sau khi sắp xếp theo đơn giá:");
         xuatDanhSachSach();
     }
-
+    public void sapXepTheoSoLuong() {
+		Collections.sort(danhSachSach, new Comparator<Sach>() {
+			@Override
+			public int compare(Sach s1, Sach s2) {
+				return Integer.compare(s1.getSoLuong(), s2.getSoLuong());
+			}
+		});
+		System.out.println("Danh sách sách sau khi sắp xếp theo số lượng:");
+		xuatDanhSachSach();
+    }
 }

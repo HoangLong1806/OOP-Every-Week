@@ -25,6 +25,7 @@ public class TestSach {
         System.out.println("6. Nhập cùng");
         System.out.println("7. Sắp xếp sách theo mã sách");
         System.out.println("8. Sắp xếp sách theo đơn giá");
+        System.out.println("9. Sắp xếp sách theo số lượng");
         System.out.println("0. Thoát");
         System.out.print("Chọn chức năng: ");
     }
@@ -66,6 +67,9 @@ public class TestSach {
                     case 8:
                         thuVien.sapXepTheoDonGia();
                         break;
+                    case 9:
+                    	thuVien.sapXepTheoSoLuong();
+                    	break;
                     case 0:
                         running = false;
                         System.out.println("Kết thúc chương trình.");
