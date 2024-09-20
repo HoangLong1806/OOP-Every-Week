@@ -3,6 +3,9 @@ package tuan4.bai2_Sach_Md3;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Collections;
+import java.util.Comparator;
+
 
 public class QuanLySach {
     private ArrayList<Sach> danhSachSach;
@@ -103,4 +106,22 @@ public class QuanLySach {
             danhSachSach.add(sach);
         }
     }
+    public void sapXepTheoMaSach() {
+        Collections.sort(danhSachSach);
+        System.out.println("Danh sách sách sau khi sắp xếp theo mã sách:");
+        xuatDanhSachSach();
+    }
+
+    // Phương thức sắp xếp theo đơn giá
+    public void sapXepTheoDonGia() {
+        Collections.sort(danhSachSach, new Comparator<Sach>() {
+            @Override
+            public int compare(Sach s1, Sach s2) {
+                return Double.compare(s1.getDonGia(), s2.getDonGia());
+            }
+        });
+        System.out.println("Danh sách sách sau khi sắp xếp theo đơn giá:");
+        xuatDanhSachSach();
+    }
+
 }
