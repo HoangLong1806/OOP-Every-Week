@@ -8,7 +8,7 @@ public class TestSach {
     // Function to provide some hardcoded input (for testing purposes)
     static void nhapCung() {
         LocalDate ngayNhap = LocalDate.of(2021, 9, 10); 
-        SachGiaoKhoa sach1 = new SachGiaoKhoa("A123", ngayNhap, 10000, 5, "NXB1", "moi");
+        SachGiaoKhoa sach1 = new SachGiaoKhoa("A123", ngayNhap, 10000, 5, "NXB1", true);
         SachThamKhao sach2 = new SachThamKhao("B123", ngayNhap, 20000, 3, "NXB2", 0.1);
         System.out.printf(sach1.toString());
         System.out.printf(sach2.toString());

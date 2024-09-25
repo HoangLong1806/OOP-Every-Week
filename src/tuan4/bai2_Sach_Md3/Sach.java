@@ -3,6 +3,7 @@ package tuan4.bai2_Sach_Md3;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 import java.util.Scanner;
 
 public abstract class Sach implements Comparable<Sach> {  // Thêm từ khóa abstract
@@ -106,8 +107,27 @@ public abstract class Sach implements Comparable<Sach> {  // Thêm từ khóa ab
     public void setNgayNhap(LocalDate ngayNhap) {
         this.ngayNhap = ngayNhap;
     }
-
+    
     @Override
+	public int hashCode() {
+		return Objects.hash(donGia, maSach, ngayNhap, nhaXuatBan, soLuong);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Sach other = (Sach) obj;
+		return Double.doubleToLongBits(donGia) == Double.doubleToLongBits(other.donGia)
+				&& Objects.equals(maSach, other.maSach) && Objects.equals(ngayNhap, other.ngayNhap)
+				&& Objects.equals(nhaXuatBan, other.nhaXuatBan) && soLuong == other.soLuong;
+	}
+
+	@Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         DecimalFormat df = new DecimalFormat("#,##0.00VND");
