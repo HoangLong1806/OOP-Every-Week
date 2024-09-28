@@ -1,20 +1,20 @@
 package tuan4.bai2_Sach_Md3;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TestSach {
 
-    // Function to provide some hardcoded input (for testing purposes)
-    static void nhapCung() {
-        LocalDate ngayNhap = LocalDate.of(2021, 9, 10); 
-        SachGiaoKhoa sach1 = new SachGiaoKhoa("A123", ngayNhap, 10000, 5, "NXB1", true);
-        SachThamKhao sach2 = new SachThamKhao("B123", ngayNhap, 20000, 3, "NXB2", 0.1);
-        System.out.printf(sach1.toString());
-        System.out.printf(sach2.toString());
+    static void nhapCung(QuanLySach thuVien) throws Exception {
+        thuVien.themSach(new SachGiaoKhoa("A123", LocalDate.of(2021, 9, 10), 10000, 5, "NXB1", true));
+        thuVien.themSach(new SachThamKhao("B123", LocalDate.of(2021, 9, 10), 20000, 3, "NXB2", 0.1));
+
+        for (Sach sach : thuVien.xuatDanhSachSach()) {
+            thuVien.xuatSach(sach);
+        }
     }
 
-    // Function to display the menu options
     static void menu() {
         System.out.println("----- MENU -----");
         System.out.println("1. Nhập danh sách sách");
@@ -45,7 +45,9 @@ public class TestSach {
                         thuVien.nhapDanhSachSach(scanner);
                         break;
                     case 2:
-                        thuVien.xuatDanhSachSach();
+                        for (Sach sach : thuVien.xuatDanhSachSach()) {
+                            thuVien.xuatSach(sach);
+                        }
                         break;
                     case 3:
                         System.out.println("Tổng thành tiền sách giáo khoa: " + thuVien.tongThanhTienSachGiaoKhoa());
@@ -56,20 +58,31 @@ public class TestSach {
                     case 5:
                         System.out.print("Nhập nhà xuất bản cần tìm sách giáo khoa: ");
                         String nhaXuatBan = scanner.nextLine();
-                        thuVien.xuatSachGiaoKhoaNhaXuatBan(nhaXuatBan);
+                        for (Sach sach : thuVien.xuatSachGiaoKhoaNhaXuatBan(nhaXuatBan)) {
+                            thuVien.xuatSach(sach);
+                        }
                         break;
                     case 6:
-                        nhapCung();
+                        nhapCung(thuVien);
                         break;
                     case 7:
                         thuVien.sapXepTheoMaSach();
+                        for (Sach sach : thuVien.xuatDanhSachSach()) {
+                            thuVien.xuatSach(sach);
+                        }
                         break;
                     case 8:
                         thuVien.sapXepTheoDonGia();
+                        for (Sach sach : thuVien.xuatDanhSachSach()) {
+                            thuVien.xuatSach(sach);
+                        }
                         break;
                     case 9:
-                    	thuVien.sapXepTheoSoLuong();
-                    	break;
+                        thuVien.sapXepTheoSoLuong();
+                        for (Sach sach : thuVien.xuatDanhSachSach()) {
+                            thuVien.xuatSach(sach);
+                        }
+                        break;
                     case 0:
                         running = false;
                         System.out.println("Kết thúc chương trình.");
@@ -86,7 +99,6 @@ public class TestSach {
         scanner.close();
     }
 
-    // Entry point of the program
     public static void main(String[] args) {
         nhapSach();
     }

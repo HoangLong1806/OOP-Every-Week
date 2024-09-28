@@ -1,11 +1,11 @@
 package tuan4.bai2_Sach_Md3;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.Collections;
 import java.util.Comparator;
-
+import java.util.Scanner;
 
 public class QuanLySach {
     private ArrayList<Sach> danhSachSach;
@@ -15,122 +15,142 @@ public class QuanLySach {
     }
 
     // Method to input a list of books
-    public void nhapDanhSachSach(Scanner scanner) {
-        try {
-            System.out.print("Nhập số lượng sách: ");
-            int soLuongSach = Integer.parseInt(scanner.nextLine());
+    public void nhapDanhSachSach(Scanner scanner) throws Exception {
+        System.out.print("Nhập số lượng sách: ");
+        int soLuongSach = Integer.parseInt(scanner.nextLine());
 
-            for (int i = 0; i < soLuongSach; i++) {
-                System.out.println("Nhập thông tin sách thứ " + (i + 1));
-                System.out.print("Sách giáo khoa (1) hay sách tham khảo (2): ");
-                int loaiSach = Integer.parseInt(scanner.nextLine());
+        for (int i = 0; i < soLuongSach; i++) {
+            System.out.println("Nhập thông tin sách thứ " + (i + 1));
+            System.out.print("Sách giáo khoa (1) hay sách tham khảo (2): ");
+            int loaiSach = Integer.parseInt(scanner.nextLine());
 
-                Sach sach;
-                if (loaiSach == 1) {
-                    sach = new SachGiaoKhoa();
-                } else {
-                    sach = new SachThamKhao();
-                }
-                sach.nhapSach(scanner);
-                danhSachSach.add(sach);
+            Sach sach;
+            if (loaiSach == 1) {
+                sach = nhapSachGiaoKhoa(scanner);
+            } else {
+                sach = nhapSachThamKhao(scanner);
             }
-        } catch (Exception e) {
-            System.out.println("Lỗi khi nhập danh sách sách: " + e.getMessage());
+            danhSachSach.add(sach);
         }
+    }
+    private SachGiaoKhoa nhapSachGiaoKhoa(Scanner scanner) {
+        SachGiaoKhoa sach = new SachGiaoKhoa();
+
+        System.out.print("Nhập mã sách: ");
+        sach.setMaSach(scanner.nextLine());
+
+        System.out.print("Nhập ngày nhập (dd/MM/yyyy): ");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        sach.setNgayNhap(LocalDate.parse(scanner.nextLine(), formatter));
+
+        System.out.print("Nhập đơn giá: ");
+        sach.setDonGia(Double.parseDouble(scanner.nextLine()));
+
+        System.out.print("Nhập số lượng: ");
+        sach.setSoLuong(Integer.parseInt(scanner.nextLine()));
+
+        System.out.print("Nhập nhà xuất bản: ");
+        sach.setNhaXuatBan(scanner.nextLine());
+
+        System.out.print("Nhập tình trạng sách (true = mới, false = cũ): ");
+        sach.setTinhTrang(scanner.nextBoolean());
+        scanner.nextLine();  // Clear buffer
+
+        return sach;
+    }
+
+    private SachThamKhao nhapSachThamKhao(Scanner scanner) {
+        SachThamKhao sach = new SachThamKhao();
+
+        System.out.print("Nhập mã sách: ");
+        sach.setMaSach(scanner.nextLine());
+
+        System.out.print("Nhập ngày nhập (dd/MM/yyyy): ");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        sach.setNgayNhap(LocalDate.parse(scanner.nextLine(), formatter));
+
+        System.out.print("Nhập đơn giá: ");
+        sach.setDonGia(Double.parseDouble(scanner.nextLine()));
+
+        System.out.print("Nhập số lượng: ");
+        sach.setSoLuong(Integer.parseInt(scanner.nextLine()));
+
+        System.out.print("Nhập nhà xuất bản: ");
+        sach.setNhaXuatBan(scanner.nextLine());
+
+        System.out.print("Nhập thuế: ");
+        sach.setThue(Double.parseDouble(scanner.nextLine()));
+
+        return sach;
     }
 
     // Method to output the list of books
-    public void xuatDanhSachSach() {
-        try {
-            for (Sach sach : danhSachSach) {
-                System.out.println(sach.toString());
-//                System.out.println("Thành tiền: " + sach.thanhTien());
-//                System.out.println("--------------------");
-            }
-        } catch (Exception e) {
-            System.out.println("Lỗi khi xuất danh sách sách: " + e.getMessage());
-        }
+    public ArrayList<Sach> xuatDanhSachSach() {
+        return new ArrayList<>(danhSachSach);
     }
+
+    public void xuatSach(Sach sach) {
+        System.out.println(sach.toString());
+    }
+
+    // Method to output the list of books
+    
 
     // Method to calculate the total value of textbooks (Sach Giao Khoa)
     public double tongThanhTienSachGiaoKhoa() {
-        try {
-            double tong = 0;
-            for (Sach sach : danhSachSach) {
-                if (sach instanceof SachGiaoKhoa) {
-                    tong += sach.thanhTien();
-                }
+        double tong = 0;
+        for (Sach sach : danhSachSach) {
+            if (sach instanceof SachGiaoKhoa) {
+                tong += sach.thanhTien();
             }
-            return tong;
-        } catch (Exception e) {
-            System.out.println("Lỗi khi tính tổng thành tiền sách giáo khoa: " + e.getMessage());
-            return 0;
         }
+        return tong;
     }
 
     // Method to calculate the average price of reference books (Sach Tham Khao)
     public double trungBinhDonGiaSachThamKhao() {
-        try {
-            double tongDonGia = 0;
-            int soLuongSachThamKhao = 0;
-            for (Sach sach : danhSachSach) {
-                if (sach instanceof SachThamKhao) {
-                    tongDonGia += sach.getDonGia();
-                    soLuongSachThamKhao++;
-                }
+        double tongDonGia = 0;
+        int soLuongSachThamKhao = 0;
+        for (Sach sach : danhSachSach) {
+            if (sach instanceof SachThamKhao) {
+                tongDonGia += sach.getDonGia();
+                soLuongSachThamKhao++;
             }
-            return soLuongSachThamKhao > 0 ? tongDonGia / soLuongSachThamKhao : 0;
-        } catch (Exception e) {
-            System.out.println("Lỗi khi tính trung bình đơn giá sách tham khảo: " + e.getMessage());
-            return 0;
         }
+        return soLuongSachThamKhao > 0 ? tongDonGia / soLuongSachThamKhao : 0;
     }
 
     // Method to output textbooks from a specific publisher
-    public void xuatSachGiaoKhoaNhaXuatBan(String nhaXuatBan) {
-        try {
-            for (Sach sach : danhSachSach) {
-                if (sach instanceof SachGiaoKhoa && sach.getNhaXuatBan().equalsIgnoreCase(nhaXuatBan)) {
-                    sach.xuatSach();
-                    System.out.println("--------------------");
-                }
+    public ArrayList<Sach> xuatSachGiaoKhoaNhaXuatBan(String nhaXuatBan) {
+        ArrayList<Sach> result = new ArrayList<>();
+        for (Sach sach : danhSachSach) {
+            if (sach instanceof SachGiaoKhoa && sach.getNhaXuatBan().equalsIgnoreCase(nhaXuatBan)) {
+                result.add(sach);
             }
-        } catch (Exception e) {
-            System.out.println("Lỗi khi xuất sách giáo khoa của nhà xuất bản " + nhaXuatBan + ": " + e.getMessage());
         }
+        return result;
     }
 
     // Method to add a book to the list
-    public void themSach(Sach sach) {
-        if (sach != null) {
-            danhSachSach.add(sach);
-        }
-    }
-    public void sapXepTheoMaSach() {
-        Collections.sort(danhSachSach);
-        System.out.println("Danh sách sách sau khi sắp xếp theo mã sách:");
-        xuatDanhSachSach();
+    public void themSach(Sach object) throws Exception {
+        if(!danhSachSach.contains(object)) {
+        	danhSachSach.add(object);
+        } else 
+        	throw new Exception("Trùng Mã Sách");
     }
 
-    // Phương thức sắp xếp theo đơn giá
-    public void sapXepTheoDonGia() {
-        Collections.sort(danhSachSach, new Comparator<Sach>() {
-            @Override
-            public int compare(Sach s1, Sach s2) {
-                return Double.compare(s1.getDonGia(), s2.getDonGia());
-            }
-        });
-        System.out.println("Danh sách sách sau khi sắp xếp theo đơn giá:");
-        xuatDanhSachSach();
+    // Method to sort books by maSach
+    public void sapXepTheoMaSach() {
+        Collections.sort(danhSachSach);
     }
+
+    // Method to sort books by donGia
+    public void sapXepTheoDonGia() {
+        Collections.sort(danhSachSach, Comparator.comparingDouble(Sach::getDonGia));
+    }
+
+    // Method to sort books by soLuong
     public void sapXepTheoSoLuong() {
-		Collections.sort(danhSachSach, new Comparator<Sach>() {
-			@Override
-			public int compare(Sach s1, Sach s2) {
-				return Integer.compare(s1.getSoLuong(), s2.getSoLuong());
-			}
-		});
-		System.out.println("Danh sách sách sau khi sắp xếp theo số lượng:");
-		xuatDanhSachSach();
+        Collections.sort(danhSachSach, Comparator.comparingInt(Sach::getSoLuong));
     }
 }

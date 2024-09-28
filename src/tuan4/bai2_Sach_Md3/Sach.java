@@ -1,10 +1,7 @@
 package tuan4.bai2_Sach_Md3;
 
-import java.text.DecimalFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Objects;
-import java.util.Scanner;
 
 public abstract class Sach implements Comparable<Sach> {  // Thêm từ khóa abstract
     protected String maSach;
@@ -32,44 +29,10 @@ public abstract class Sach implements Comparable<Sach> {  // Thêm từ khóa ab
     public void setNgayNhap(int year, int month, int day) {
         this.ngayNhap = LocalDate.of(year, month, day);
     }
+
     @Override
     public int compareTo(Sach other) {
         return this.maSach.compareTo(other.maSach);
-    }
-
-    public void nhapSach(Scanner scanner) {
-        try {
-            System.out.print("Nhập mã sách: ");
-            maSach = scanner.nextLine();
-
-            System.out.print("Nhập ngày nhập (dd/MM/yyyy): ");
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            ngayNhap = LocalDate.parse(scanner.nextLine(), formatter);
-
-            System.out.print("Nhập đơn giá: ");
-            donGia = Double.parseDouble(scanner.nextLine());
-
-            System.out.print("Nhập số lượng: ");
-            soLuong = Integer.parseInt(scanner.nextLine());
-
-            System.out.print("Nhập nhà xuất bản: ");
-            nhaXuatBan = scanner.nextLine();
-        } catch (Exception e) {
-            System.out.println("Lỗi khi nhập dữ liệu: " + e.getMessage());
-        }
-    }
-
-    public void xuatSach() {
-        try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            System.out.println("Mã sách: " + maSach);
-            System.out.println("Ngày nhập: " + ngayNhap.format(formatter));
-            System.out.println("Đơn giá: " + donGia);
-            System.out.println("Số lượng: " + soLuong);
-            System.out.println("Nhà xuất bản: " + nhaXuatBan);
-        } catch (Exception e) {
-            System.out.println("Lỗi khi xuất dữ liệu: " + e.getMessage());
-        }
     }
 
     public String getMaSach() {
@@ -107,10 +70,12 @@ public abstract class Sach implements Comparable<Sach> {  // Thêm từ khóa ab
     public void setNgayNhap(LocalDate ngayNhap) {
         this.ngayNhap = ngayNhap;
     }
-    
+
+   
+
     @Override
 	public int hashCode() {
-		return Objects.hash(donGia, maSach, ngayNhap, nhaXuatBan, soLuong);
+		return Objects.hash(maSach);
 	}
 
 	@Override
@@ -122,18 +87,11 @@ public abstract class Sach implements Comparable<Sach> {  // Thêm từ khóa ab
 		if (getClass() != obj.getClass())
 			return false;
 		Sach other = (Sach) obj;
-		return Double.doubleToLongBits(donGia) == Double.doubleToLongBits(other.donGia)
-				&& Objects.equals(maSach, other.maSach) && Objects.equals(ngayNhap, other.ngayNhap)
-				&& Objects.equals(nhaXuatBan, other.nhaXuatBan) && soLuong == other.soLuong;
+		return Objects.equals(maSach, other.maSach);
 	}
 
 	@Override
     public String toString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        DecimalFormat df = new DecimalFormat("#,##0.00VND");
-        String formattedDonGia = df.format(donGia);
-        return String.format("|%-10s|%-15s|%-15s|%-10d|%-20s|", maSach, ngayNhap.format(formatter), formattedDonGia,
-                soLuong, nhaXuatBan);
+        return String.format("|%-10s|%-15s|%-15.2f|%-10d|%-20s|", maSach, ngayNhap, donGia, soLuong, nhaXuatBan);
     }
-
 }

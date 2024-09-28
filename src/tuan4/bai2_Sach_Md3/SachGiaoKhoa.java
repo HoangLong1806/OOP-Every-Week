@@ -1,7 +1,6 @@
 package tuan4.bai2_Sach_Md3;
 
 import java.time.LocalDate;
-import java.util.Scanner;
 
 public class SachGiaoKhoa extends Sach {
     private boolean tinhTrang; // true = mới, false = cũ
@@ -17,43 +16,22 @@ public class SachGiaoKhoa extends Sach {
         this.tinhTrang = tinhTrang;
     }
 
-    // Input method for SachGiaoKhoa
-    @Override
-    public void nhapSach(Scanner scanner) {
-        try {
-            super.nhapSach(scanner);  // Use the parent class method for common attributes
-            System.out.print("Nhập tình trạng sách (true = mới, false = cũ): ");
-            tinhTrang = scanner.nextBoolean();
-        } catch (Exception e) {
-            System.out.println("Lỗi khi nhập tình trạng sách: " + e.getMessage());
-        }
-    }
-
-    // Output method for SachGiaoKhoa
-    @Override
-    public void xuatSach() {
-        try {
-            super.xuatSach();  // Use the parent class method for common attributes
-            String trangThai = tinhTrang ? "mới" : "cũ";
-            System.out.println("Tình trạng: " + trangThai);
-        } catch (Exception e) {
-            System.out.println("Lỗi khi xuất tình trạng sách: " + e.getMessage());
-        }
-    }
-
     // Method to calculate total price based on the condition of the book
     @Override
     public double thanhTien() {
-        try {
-            if (tinhTrang) { // true = mới
-                return soLuong * donGia;  // New books are sold at full price
-            } else { // false = cũ
-                return soLuong * donGia * 0.5;  // Used books are sold at 50% of the price
-            }
-        } catch (Exception e) {
-            System.out.println("Lỗi khi tính thành tiền: " + e.getMessage());
-            return 0;
+        if (tinhTrang) { // true = mới
+            return soLuong * donGia;  // New books are sold at full price
+        } else { // false = cũ
+            return soLuong * donGia * 0.5;  // Used books are sold at 50% of the price
         }
+    }
+
+    public boolean isTinhTrang() {
+        return tinhTrang;
+    }
+
+    public void setTinhTrang(boolean tinhTrang) {
+        this.tinhTrang = tinhTrang;
     }
 
     // toString method for formatted output

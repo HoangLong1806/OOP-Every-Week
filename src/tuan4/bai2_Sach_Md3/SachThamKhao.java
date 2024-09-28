@@ -1,7 +1,6 @@
 package tuan4.bai2_Sach_Md3;
 
 import java.time.LocalDate;
-import java.util.Scanner;
 
 public class SachThamKhao extends Sach {
     private double thue;
@@ -17,38 +16,18 @@ public class SachThamKhao extends Sach {
         this.thue = thue;
     }
 
-    // Input method for SachThamKhao
-    @Override
-    public void nhapSach(Scanner scanner) {
-        try {
-            super.nhapSach(scanner);  // Use the parent class method for common attributes
-            System.out.print("Nhập thuế: ");
-            thue = Double.parseDouble(scanner.nextLine());
-        } catch (Exception e) {
-            System.out.println("Lỗi khi nhập thuế: " + e.getMessage());
-        }
-    }
-
-    // Output method for SachThamKhao
-    @Override
-    public void xuatSach() {
-        try {
-            super.xuatSach();  // Use the parent class method for common attributes
-            System.out.println("Thuế: " + thue);
-        } catch (Exception e) {
-            System.out.println("Lỗi khi xuất thông tin thuế: " + e.getMessage());
-        }
-    }
-
     // Method to calculate total price including tax
     @Override
     public double thanhTien() {
-        try {
-            return soLuong * donGia + thue;  // Total price is quantity * price + tax
-        } catch (Exception e) {
-            System.out.println("Lỗi khi tính thành tiền sách tham khảo: " + e.getMessage());
-            return 0;
-        }
+        return soLuong * donGia + thue;  // Total price is quantity * price + tax
+    }
+
+    public double getThue() {
+        return thue;
+    }
+
+    public void setThue(double thue) {
+        this.thue = thue;
     }
 
     // toString method for formatted output
