@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+
+
 public class QuanLyKho {
     private ArrayList<HangHoa> danhSachHang;
 
@@ -28,21 +30,20 @@ public class QuanLyKho {
         return null;
     }
 
-    public void xoaHang(String maHang) {
+    public boolean xoaHang(String maHang) {
         HangHoa hangToRemove = null;
         for (HangHoa hang : danhSachHang) {
-            if (hang.maHang.equals(maHang)) {
+            if (hang.getMaHang().equals(maHang)) {
                 hangToRemove = hang;
                 break;
             }
         }
-        
+
         if (hangToRemove != null) {
             danhSachHang.remove(hangToRemove);
-            System.out.println("Đã xóa hàng có mã: " + maHang);
-        } else {
-            System.out.println("Không tìm thấy hàng với mã: " + maHang);
+            return true; // Xóa thành công
         }
+        return false; // Không tìm thấy hàng để xóa
     }
 
 

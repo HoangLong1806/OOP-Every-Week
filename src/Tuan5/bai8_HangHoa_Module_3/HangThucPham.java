@@ -2,6 +2,7 @@ package tuan5.bai8_HangHoa_Module_3;
 
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class HangThucPham extends HangHoa {
     private LocalDate ngaySanXuat;
@@ -10,13 +11,13 @@ public class HangThucPham extends HangHoa {
 
     // Constructor
     public HangThucPham(String maHang, String tenHang, int soLuongTon, double donGia, 
-                        String nhaCungCap, String ngaySanXuat, String ngayHetHan) {
+                        String nhaCungCap, LocalDate ngaySanXuat, LocalDate ngayHetHan) {
         super(maHang, tenHang, soLuongTon, donGia, "Thực phẩm"); // Loại hàng
         this.nhaCungCap = nhaCungCap;
 
         // Chuyển đổi từ String sang LocalDate
-        this.ngaySanXuat = LocalDate.parse(ngaySanXuat);
-        this.ngayHetHan = LocalDate.parse(ngayHetHan);
+        this.ngaySanXuat =ngaySanXuat;
+        this.ngayHetHan = ngayHetHan;
         
         // Kiểm tra ngày hết hạn phải sau hoặc bằng ngày sản xuất
         if (this.ngayHetHan.isBefore(this.ngaySanXuat)) {
@@ -24,32 +25,31 @@ public class HangThucPham extends HangHoa {
         }
     }
 
-    // Getter và Setter
     public LocalDate getNgaySanXuat() {
-        return ngaySanXuat;
-    }
+		return ngaySanXuat;
+	}
 
-    public void setNgaySanXuat(LocalDate ngaySanXuat) {
-        this.ngaySanXuat = ngaySanXuat;
-    }
+	public void setNgaySanXuat(LocalDate ngaySanXuat) {
+		this.ngaySanXuat = ngaySanXuat;
+	}
 
-    public LocalDate getNgayHetHan() {
-        return ngayHetHan;
-    }
+	public LocalDate getNgayHetHan() {
+		return ngayHetHan;
+	}
 
-    public void setNgayHetHan(LocalDate ngayHetHan) {
-        this.ngayHetHan = ngayHetHan;
-    }
+	public void setNgayHetHan(LocalDate ngayHetHan) {
+		this.ngayHetHan = ngayHetHan;
+	}
 
-    public String getNhaCungCap() {
-        return nhaCungCap;
-    }
+	public String getNhaCungCap() {
+		return nhaCungCap;
+	}
 
-    public void setNhaCungCap(String nhaCungCap) {
-        this.nhaCungCap = nhaCungCap;
-    }
+	public void setNhaCungCap(String nhaCungCap) {
+		this.nhaCungCap = nhaCungCap;
+	}
 
-    @Override
+	@Override
     public double tinhVAT() {
         return tinhGiaBan() * 0.05; // Tính VAT cho hàng thực phẩm
     }
@@ -64,8 +64,12 @@ public class HangThucPham extends HangHoa {
 
     @Override
     public String toString() {
-        return String.format("%-10s|%-15s|%-10d|%-10.2f|%-20s|%-15s|%-15s|%-15s",
-                maHang, tenHang, soLuongTon, donGia, nhaCungCap, ngaySanXuat, ngayHetHan, "Thực phẩm");
+    	 String ngaySanXuatFormatted = ( ngaySanXuat != null) ? 
+    			 ngaySanXuat.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) : "N/A";
+    	 String ngayHetHanFormatted = ( ngaySanXuat != null) ? 
+    			 ngaySanXuat.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) : "N/A";
+        return super.toString() + String.format("|%-20s|%-15s|%-15s|%-10.2f",
+                 nhaCungCap, ngaySanXuatFormatted, ngayHetHanFormatted, tinhVAT());
     }
 
 

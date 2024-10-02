@@ -3,6 +3,7 @@ package tuan5.bai8_HangHoa_Module_3;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Testmain {
@@ -26,23 +27,23 @@ public class Testmain {
     public static void inTieuDe(String loaiHang) {
         switch (loaiHang) {
             case "Thực phẩm":
-                System.out.printf("%-10s|%-15s|%-10s|%-10s|%-20s|%-15s|%-15s|%-15s|%-15s\n", 
+                System.out.printf("%-10s|%-15s|%-10s|%-10s|%-15s|%-20s|%-15s|%-15s|%-15s\n", 
                                   "Mã Hàng", "Tên Hàng", "Số Lượng", "Đơn Giá", 
-                                  "Nhà Cung Cấp", "Ngày Sản Xuất", "Ngày Hết Hạn", "Loại Hàng", "VAT");
+                                  "Loại Hàng", "Nhà Cung Cấp", "Ngày Sản Xuát", "Ngày Hết Hạn", "VAT");
                 
                 break;
             case "Điện máy":
             	System.out.println("-----------------------------------------------------------------------------------");
-                System.out.printf("%-10s|%-15s|%-10s|%-10s|%-15s|%-10s|%-10s|%-15s\n", 
+                System.out.printf("%-10s|%-15s|%-10s|%-10s|%-15s|%-20s|%-15s|%-15s\n", 
                                   "Mã Hàng", "Tên Hàng", "Số Lượng", "Đơn Giá", 
-                                  "Thời Gian BH", "Công Suất", "Loại Hàng", "VAT");
-               
+                                  "Loại Hàng", "Thời Gian BH", "Công suất", "VAT");
+              
                 break;
             case "Sành sứ":
             	System.out.println("-----------------------------------------------------------------------------------");
-                System.out.printf("%-10s|%-15s|%-10s|%-10s|%-20s|%-15s|%-15s|%-15s\n", 
+                System.out.printf("%-10s|%-15s|%-10s|%-10s|%-15s|%-20s|%-15s|%-15s\n", 
                                   "Mã Hàng", "Tên Hàng", "Số Lượng", "Đơn Giá", 
-                                  "Nhà Sản Xuất", "Ngày Nhập Kho", "Loại Hàng", "VAT");
+                                  "Loại Hàng", "Nhà sản xuất", "Ngày nhập kho", "VAT");
                 
                 break;
             default:
@@ -51,13 +52,24 @@ public class Testmain {
     }
 
 
-
+    static void xoa(QuanLyKho dsHang) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Nhập mã hàng cần xóa: ");
+        String ma = scanner.nextLine();
+        
+        // Sử dụng phương thức xoaHang của đối tượng ds (QuanLyKho)
+        if (dsHang.xoaHang(ma)) {
+            System.out.println("Xóa thành công hàng có mã: " + ma);
+        } else {
+            System.out.println("Xóa không thành công. Không tìm thấy hàng có mã: " + ma);
+        }
+    }
 
     static void nhapCung() throws Exception {
         try {
             // Thêm một số hàng hóa mẫu
         	HangHoa thucPham1 = new HangThucPham("TP001", "Sữa tươi", 100, 20000, 
-                    "Công ty TNHH ABC", "2024-01-01", "2025-01-01"); // Cung cấp nhà cung cấp, ngày sản xuất và ngày hết hạn
+                    "Công ty TNHH ABC", LocalDate.of(2023, 9, 13), LocalDate.of(2023, 9, 14)); // Cung cấp nhà cung cấp, ngày sản xuất và ngày hết hạn
 
         	HangHoa dienMay1 = new HangDienMay("DM001", "Tivi LED", 50, 5000000, 24, 150);
 
@@ -91,7 +103,8 @@ public class Testmain {
             }
         }
     }
-
+    
+    
 
 
     // Hàm nhập hàng hóa từ bàn phím
@@ -118,13 +131,19 @@ public class Testmain {
 
         switch (loaiHang) {
             case 1: // Hàng thực phẩm
-                System.out.print("Nhập ngày sản xuất (yyyy-MM-dd): ");
-                String ngaySanXuat = scanner.nextLine();
-                System.out.print("Nhập ngày hết hạn (yyyy-MM-dd): ");
-                String ngayHetHan = scanner.nextLine();
+				/*
+				 * System.out.print("Nhập ngày sản xuất (yyyy-MM-dd): "); String ngaySanXuat =
+				 * scanner.nextLine(); System.out.print("Nhập ngày giao dịch (dd/MM/yyyy): ");
+				 */
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                System.out.print("Nhập ngày sản xuất (dd/MM/yyyy): ");
+                LocalDate ngaySanXuat = LocalDate.parse(scanner.nextLine(), formatter);
+                System.out.print("Nhập ngày hết hạn (dd/MM/yyyy): ");
+                LocalDate ngayHetHan = LocalDate.parse(scanner.nextLine(), formatter);
+              
                 System.out.print("Nhập nhà cung cấp: ");
                 String nhaCungCap = scanner.nextLine();
-                hang = new HangThucPham(maHang, tenHang, soLuongTon, donGia, ngaySanXuat, ngayHetHan, nhaCungCap);
+                hang = new HangThucPham(maHang, tenHang, soLuongTon, donGia, nhaCungCap, ngaySanXuat, ngayHetHan);
                 break;
 
             case 2: // Hàng điện máy
@@ -178,9 +197,9 @@ public class Testmain {
                         xuat(dsHang);
                         break;
                     case 4: // Chức năng xóa hàng hóa
-                        System.out.print("Nhập mã hàng cần xóa: ");
-                        String maHangXoa = scanner.nextLine();
-                        dsHang.xoaHang(maHangXoa);
+					
+						xoa(dsHang);
+						xuat(dsHang);
                         break;
 					case 5: // Sắp xếp theo đơn giá
 						dsHang.sortTheoSoLuong();

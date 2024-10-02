@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 
 
-
 public class TestGiaoDich {
   static ListGiaoDich dsGiaoDich = new ListGiaoDich();
   static Scanner scanner = new Scanner(System.in);
@@ -26,9 +25,9 @@ public class TestGiaoDich {
   public static void inTieuDe(String loaiGiaoDich) {
 	    if (loaiGiaoDich.equals("Vàng")) {
 	    	 System.out.println("-----------------------------------------------------------------------------------");
-	        System.out.printf("%-10s|%-15s|%-10s|%-10s|%-15s|%-20s|%-20s|%-20s\n", 
+	        System.out.printf("%-10s|%-15s|%-10s|%-10s|%-15s|%-20s|%-20s\n", 
 	                          "Mã Giao Dịch", "Ngày", "Đơn Giá", "Số Lượng", 
-	                          "Loại Giao Dịch", "Loại Vàng", "Thành Tiền", "VAT");
+	                          "Loại Giao Dịch", "Loại Vàng", "Thành Tiền");
 	    } else if (loaiGiaoDich.equals("Tiền")) {
 	    	 System.out.println("-----------------------------------------------------------------------------------");
 	        System.out.printf("%-10s|%-15s|%-10s|%-10s|%-15s|%-10s|%-10s|%-10s\n", 
