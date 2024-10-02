@@ -1,4 +1,4 @@
-package Tuan5.bai8_HangHoa_Module_3;
+package tuan5.bai8_HangHoa_Module_3;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -26,7 +26,7 @@ public class Testmain {
     public static void inTieuDe(String loaiHang) {
         switch (loaiHang) {
             case "Thực phẩm":
-                System.out.printf("%-10s|%-15s|%-10s|%-10s|%-20s|%-15s|%-15s|%-15s||%-15s\n", 
+                System.out.printf("%-10s|%-15s|%-10s|%-10s|%-20s|%-15s|%-15s|%-15s|%-15s\n", 
                                   "Mã Hàng", "Tên Hàng", "Số Lượng", "Đơn Giá", 
                                   "Nhà Cung Cấp", "Ngày Sản Xuất", "Ngày Hết Hạn", "Loại Hàng", "VAT");
                 

@@ -1,4 +1,4 @@
-package Tuan5.bai8_HangHoa_Module_3;
+package tuan5.bai8_HangHoa_Module_3;
 
 public class HangDienMay extends HangHoa {
 	private int thoiGianBaoHanh;
