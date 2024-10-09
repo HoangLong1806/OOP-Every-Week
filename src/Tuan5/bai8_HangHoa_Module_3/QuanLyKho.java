@@ -1,18 +1,17 @@
-package tuan5.bai8_HangHoa_Module_3;
-
+package Tuan5.bai8_HangHoa_Module_3;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
 
 
-public class QuanLyKho {
+public class QuanLyKho implements HangHoaIpl {
     private ArrayList<HangHoa> danhSachHang;
 
     public QuanLyKho() {
         danhSachHang = new ArrayList<>();
     }
-
+    @Override
     public void addHang(HangHoa hang) throws Exception {
     	if (!danhSachHang.contains(hang))// hiểu dc nhờ hascode equa của lớp sach
 			danhSachHang.add(hang);
@@ -20,7 +19,7 @@ public class QuanLyKho {
 			throw new Exception("Mã Giao Dich đã trùng");
 		}
     }
-
+    @Override
     public HangHoa timKiem(String maHang) {
         for (HangHoa hang : danhSachHang) {
             if (hang.maHang.equalsIgnoreCase(maHang)) {
@@ -29,7 +28,7 @@ public class QuanLyKho {
         }
         return null;
     }
-
+    @Override
     public boolean xoaHang(String maHang) {
         HangHoa hangToRemove = null;
         for (HangHoa hang : danhSachHang) {
@@ -46,7 +45,7 @@ public class QuanLyKho {
         return false; // Không tìm thấy hàng để xóa
     }
 
-
+    @Override
     public ArrayList<HangHoa> getListHangThucPham() {
         ArrayList<HangHoa> listThucPham = new ArrayList<>();
         for (HangHoa hang : danhSachHang) {
@@ -56,7 +55,7 @@ public class QuanLyKho {
         }
         return listThucPham;
     }
-
+    @Override
     public ArrayList<HangHoa> getListHangDienMay() {
         ArrayList<HangHoa> listDienMay = new ArrayList<>();
         for (HangHoa hang : danhSachHang) {
@@ -66,7 +65,7 @@ public class QuanLyKho {
         }
         return listDienMay;
     }
-
+    @Override
     public ArrayList<HangHoa> getListHangSanhSu() {
         ArrayList<HangHoa> listSanhSu = new ArrayList<>();
         for (HangHoa hang : danhSachHang) {
@@ -76,12 +75,13 @@ public class QuanLyKho {
         }
         return listSanhSu;
     }
-
+    @Override
     public ArrayList<HangHoa> getListHang() {
         return danhSachHang;
     }
     
  // Hàm sắp xếp theo số lượng
+    @Override
     public void sortTheoSoLuong() {
         Collections.sort(danhSachHang, new Comparator<HangHoa>() {
             @Override
@@ -94,7 +94,7 @@ public class QuanLyKho {
 
     
     
-
+    @Override
 	public void sortDonGia() {
 		// TODO Auto-generated method stub
 		 Collections.sort(danhSachHang, new Comparator<HangHoa>() {

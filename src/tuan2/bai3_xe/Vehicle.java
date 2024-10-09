@@ -4,6 +4,7 @@ public class Vehicle {
 	private String owner;
 	private double value;
 	private int engineCapacity;
+	
 
 	public Vehicle(String owner, double value, int engineCapacity) {
 		this.owner = owner;

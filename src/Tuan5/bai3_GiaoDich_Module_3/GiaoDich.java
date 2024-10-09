@@ -1,4 +1,4 @@
-package tuan5.bai3_GiaoDich_Module_3;
+package Tuan5.bai3_GiaoDich_Module_3;
 
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
@@ -96,7 +96,6 @@ public abstract class GiaoDich {
 	
 	@Override
 	public String toString() {
-	    // Kiểm tra nếu ngayGiaoDich là null
 	    String ngayGiaoDichFormatted = (ngayGiaoDich != null) ? 
 	        ngayGiaoDich.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) : "N/A";
 

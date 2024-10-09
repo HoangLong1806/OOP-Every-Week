@@ -1,16 +1,17 @@
-package tuan5.bai3_GiaoDich_Module_3;
+package Tuan5.bai3_GiaoDich_Module_3;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class ListGiaoDich {
+public class ListGiaoDich implements GiaoDichIpl {
 	private ArrayList<GiaoDich> listGiaoDich;
-	
+
 	public ListGiaoDich() {
 		listGiaoDich = new ArrayList<GiaoDich>();
 	}
-	
+
+	@Override
 	public void addGiaoDich(GiaoDich gd) throws Exception {
 		if (!listGiaoDich.contains(gd))// hiểu dc nhờ hascode equa của lớp sach
 			listGiaoDich.add(gd);
@@ -18,8 +19,8 @@ public class ListGiaoDich {
 			throw new Exception("Mã Giao Dich đã trùng");
 		}
 	}
-	
-	
+
+	@Override
 	public GiaoDich timKiem(String maGiaoDich) {
 		for (GiaoDich gd : listGiaoDich) {
 			if (gd.getMaGiaoDich().equalsIgnoreCase(maGiaoDich))
@@ -27,11 +28,13 @@ public class ListGiaoDich {
 		}
 		return null;
 	}
-	
+
+	@Override
 	public void xoa(GiaoDich gd) {
 		listGiaoDich.remove(gd);
 	}
-	
+
+	@Override
 	public ArrayList<GiaoDich> getListGiaoDichVang() {
 		ArrayList<GiaoDich> DSGiaoDichVang = new ArrayList<GiaoDich>();
 		for (GiaoDich gd : listGiaoDich)
@@ -40,7 +43,7 @@ public class ListGiaoDich {
 
 		return DSGiaoDichVang;
 	}
-	
+
 	public ArrayList<GiaoDich> getListGiaoDichTienTe() {
 		ArrayList<GiaoDich> DSGiaoDichTienTe = new ArrayList<GiaoDich>();
 		for (GiaoDich gd : listGiaoDich)
@@ -49,23 +52,20 @@ public class ListGiaoDich {
 
 		return DSGiaoDichTienTe;
 	}
-	
-	
+
 	public ArrayList<GiaoDich> getListGiaoDich() {
 		return listGiaoDich;
 	}
-	
-	
-	public void sortTheoSoLuong() {
-	    Collections.sort(listGiaoDich, new Comparator<GiaoDich>() {
-	        @Override
-	        public int compare(GiaoDich o1, GiaoDich o2) {
-	            return Integer.compare(o1.getSoLuong(), o2.getSoLuong());
-	        }
-	    });
-	    System.out.println("Đã sắp xếp theo số lượng.");
-	}
-	
 
+	@Override
+	public void sortTheoSoLuong() {
+		Collections.sort(listGiaoDich, new Comparator<GiaoDich>() {
+			@Override
+			public int compare(GiaoDich o1, GiaoDich o2) {
+				return Integer.compare(o1.getSoLuong(), o2.getSoLuong());
+			}
+		});
+		System.out.println("Đã sắp xếp theo số lượng.");
+	}
 
 }

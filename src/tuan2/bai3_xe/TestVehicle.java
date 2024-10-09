@@ -12,9 +12,7 @@ public class TestVehicle {
 	}
 	public static void nhapThongTinXe() {
 		Scanner scanner = new Scanner(System.in);
-
 		Vehicle xe1 = null, xe2 = null, xe3 = null;
-
 		while (true) {
 			
 

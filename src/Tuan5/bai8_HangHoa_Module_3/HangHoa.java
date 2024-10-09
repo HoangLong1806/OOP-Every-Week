@@ -1,18 +1,18 @@
-package tuan5.bai8_HangHoa_Module_3;
-
+package Tuan5.bai8_HangHoa_Module_3;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.Objects;
 
 public abstract  class HangHoa {
-	protected final String maHang; // Mã hàng không được sửa
+	protected final String maHang; 
     protected String tenHang;
     protected int soLuongTon;
     protected double donGia;
     protected String loaiHang;
 	public abstract double tinhVAT();
     public abstract String danhGiaMucDoBanBuon();
+    
 	
 	SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 	NumberFormat numberFormat = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
@@ -35,7 +35,7 @@ public abstract  class HangHoa {
 	        this.tenHang = tenHang;
 	        this.soLuongTon = soLuongTon;
 	        this.donGia = donGia;
-	        this.loaiHang = loaiHang; // Thêm thuộc tính phân loại
+	        this.loaiHang = loaiHang; 
 	    }
 
 	    public String getMaHang() {
