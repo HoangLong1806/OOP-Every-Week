@@ -1,43 +1,44 @@
 package On;
-
-
 import java.util.Scanner;
 
 public class TestSV {
-	 static Scanner scanner = new Scanner(System.in);
+    static Scanner scanner = new Scanner(System.in);
 
-	 public static void tuaDe() {
-     	System.out.println("--------------------------------------------------------");
-     	System.out.println("------------------Danh Sách Sinh Viên-------------------");
-     	System.out.printf("|%-10s|%-10s|%-10s|%-10s|%-10s", 
-     			"MSSV", "Họ & Tên", "Giới tính", "Khóa học", "Điểm");
-     	System.out.println("\n");
-     }
-	 public static void Menu() {
-		 System.out.println("====== MENU QUẢN LÝ SINH VIÊN ======");
-         System.out.println("1. Thêm sinh viên");
-         System.out.println("2. Xóa sinh viên");
-         System.out.println("3. Sửa thông tin sinh viên");
-         System.out.println("4. Hiển thị danh sách sinh viên");
-         System.out.println("5. Sắp xếp sinh viên theo tên (tăng dần)");
-         System.out.println("6. Sắp xếp sinh viên theo mã số (giảm dần)");
-         System.out.println("7. Nhập cứng");
-         System.out.println("0. Thoát");
-         System.out.print("Nhập lựa chọn: ");
-	 }
-	 public static void nhapCung(danhSach ds) {
-		 SinhVien sv1 = new SinhVien("a1", "Trọng", "nam", 19, 9);
-		 SinhVien sv2 = new SinhVien("a2", "Thịnh", "nam", 18, 8);
-		 SinhVien sv3 = new SinhVien("a3", "Hạnh", "nữ", 19, 7);
-		 
-		 ds.themSV(sv1);
-		 ds.themSV(sv2);
-		 ds.themSV(sv3);
-	 }
+    public static void tuaDe() {
+        System.out.println("--------------------------------------------------------");
+        System.out.println("------------------Danh Sách Sinh Viên-------------------");
+        System.out.printf("|%-10s|%-10s|%-10s|%-10s|%-10s", 
+                "MSSV", "Họ & Tên", "Giới tính", "Khóa học", "Điểm");
+        System.out.println("\n");
+    }
 
-	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
-		System.out.print("Nhập số lượng sinh viên cần thêm vào danh sách(>0): ");
+    public static void Menu() {
+        System.out.println("====== MENU QUẢN LÝ SINH VIÊN ======");
+        System.out.println("1. Thêm sinh viên");
+        System.out.println("2. Xóa sinh viên");
+        System.out.println("3. Sửa thông tin sinh viên");
+        System.out.println("4. Hiển thị danh sách sinh viên");
+        System.out.println("5. Sắp xếp sinh viên theo tên (tăng dần)");
+        System.out.println("6. Sắp xếp sinh viên theo mã số (giảm dần)");
+        System.out.println("7. Nhập cứng");
+        System.out.println("8. Tìm kiếm sinh viên theo mã số");
+        System.out.println("0. Thoát");
+        System.out.print("Nhập lựa chọn: ");
+    }
+
+    public static void nhapCung(danhSach ds) {
+        SinhVien sv1 = new SinhVien("a1", "Trọng", "nam", 19, 9);
+        SinhVien sv2 = new SinhVien("a2", "Thịnh", "nam", 18, 8);
+        SinhVien sv3 = new SinhVien("a3", "Hạnh", "nữ", 19, 7);
+        
+        ds.themSV(sv1);
+        ds.themSV(sv2);
+        ds.themSV(sv3);
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Nhập số lượng sinh viên cần thêm vào danh sách(>0): ");
         int kichThuoc = scanner.nextInt(); 
         danhSach ds = new danhSach(kichThuoc);
         
@@ -113,8 +114,6 @@ public class TestSV {
                     System.out.println(ds.inDanhSach());
                     break;
 
-                
-
                 case 5:
                     // Sắp xếp sinh viên theo tên (tăng dần)
                     ds.sapXepTangTheoHoTen();
@@ -132,12 +131,25 @@ public class TestSV {
                     break;
                     
                 case 7:
-                	// nhập cứng
-                	nhapCung(ds);
-                	 tuaDe();
-                     System.out.println(ds.inDanhSach());
-                     break;
-      
+                    // nhập cứng
+                    nhapCung(ds);
+                    tuaDe();
+                    System.out.println(ds.inDanhSach());
+                    break;
+
+                case 8:
+                    // Tìm kiếm sinh viên theo mã số
+                    System.out.print("Nhập mã số sinh viên cần tìm: ");
+                    String mssvTimKiem = scanner.nextLine();
+                    SinhVien foundStudent = ds.timKiemSV(mssvTimKiem);
+                    if (foundStudent != null) {
+                        tuaDe();
+                        System.out.println(foundStudent.toString());
+                    } else {
+                        System.out.println("Không tìm thấy sinh viên với mã số: " + mssvTimKiem);
+                    }
+                    break;
+                    
                 case 0:
                     // Thoát
                     System.out.println("Thoát chương trình!");
@@ -150,5 +162,5 @@ public class TestSV {
         } while (luaChon != 0);
         
         scanner.close();
-	}
+    }
 }

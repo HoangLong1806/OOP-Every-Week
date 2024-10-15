@@ -1,4 +1,4 @@
-package On;
+	package On;
 
 
 import java.util.Arrays;
@@ -81,6 +81,16 @@ public class danhSach {
 //			}
 //			return str;
 //		}
+		// tìm kiếm sinh viên theo mã số sinh viên
+		public SinhVien timKiemSV(String mssv) {
+		    for (int i = 0; i < soLuong; i++) {
+		        if (danhSach[i].getMssv().equals(mssv)) {
+		            return danhSach[i]; // trả về sinh viên nếu tìm thấy
+		        }
+		    }
+		    return null; // trả về null nếu không tìm thấy sinh viên
+		}
+		
 		// sắp xếp tăng dần theo họ tên sinh viên
 		public void sapXepTangTheoHoTen() {
 			Arrays.sort(danhSach, 0, soLuong, new Comparator<SinhVien>() {
