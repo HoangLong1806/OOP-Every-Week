@@ -1,4 +1,4 @@
-package OnThi.PhongHoc;
+package Tuan6.PhongHoc_Md4;
 
 public class PhongMayTinh extends PhongHoc {
     private int soMayTinh;
@@ -23,6 +23,6 @@ public class PhongMayTinh extends PhongHoc {
 
     @Override
     public String toString() {
-        return "PhongMayTinh [soMayTinh=" + soMayTinh + ", " + super.toString() + "]";
+        return String.format("%10s|-%10s|-%10.2f|-%10d|-%10d", getMaPhong(), getDayNha(), getDienTich(), getSoBongDen(), soMayTinh);
     }
 }

@@ -1,4 +1,4 @@
-package OnThi.PhongHoc;
+package Tuan6.PhongHoc_Md4;
 
 public class PhongThiNghiem extends PhongHoc {
     private String chuyenNganh;
@@ -19,6 +19,7 @@ public class PhongThiNghiem extends PhongHoc {
 
     @Override
     public String toString() {
-        return "PhongThiNghiem [chuyenNganh=" + chuyenNganh + ", sucChua=" + sucChua + ", coBonRua=" + coBonRua + ", " + super.toString() + "]";
+        return String.format("%10s|-%10s|-%10.2f|-%10d|-%10s|-%10d|-%10s", getMaPhong(), getDayNha(), getDienTich(), getSoBongDen(),
+                chuyenNganh, sucChua, coBonRua ? "Co" : "Khong");
     }
 }

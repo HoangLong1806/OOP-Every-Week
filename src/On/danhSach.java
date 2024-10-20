@@ -13,6 +13,10 @@ public class danhSach {
 		soLuong = 0;
 	}
 	
+	public danhSach() {
+		// TODO Auto-generated constructor stub
+	}
+
 	// thêm sinh viên vào danh sách
 	public boolean themSV(SinhVien sv) {
 		if(soLuong < danhSach.length) {

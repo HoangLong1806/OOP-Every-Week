@@ -1,8 +1,28 @@
-package OnThi.PhongHoc;
+package Tuan6.PhongHoc_Md4;
+
 import java.util.Scanner;
 
 public class Test {
-    public static void main(String[] args) {
+    static void tieuDe() {
+        System.out.println("====================================================================================================");
+        System.out.println(String.format("%10s|-%10s|-%10s|-%10s|-%10s", "Mã phòng", "Dãy nhà", "Diện tích", "Số bóng đèn", "Thông tin thêm"));
+    }
+
+    static void nhapCung() {
+        QuanLyPhongHoc quanLyPhongHoc = new QuanLyPhongHoc();
+        PhongLyThuyet phongLyThuyet = new PhongLyThuyet("LT001", "D1", 30, 5, true);
+        PhongMayTinh phongMayTinh = new PhongMayTinh("MT001", "D2", 40, 6, 50);
+        PhongThiNghiem phongThiNghiem = new PhongThiNghiem("TN001", "D3", 50, 8, "Hóa học", 30, true);
+
+        quanLyPhongHoc.themPhongHoc(phongLyThuyet);
+        quanLyPhongHoc.themPhongHoc(phongMayTinh);
+        quanLyPhongHoc.themPhongHoc(phongThiNghiem);
+
+        System.out.println("Danh sách phòng học (nhập cứng): ");
+        quanLyPhongHoc.inDanhSachPhongHoc();
+    }
+
+    static void nhap() {
         QuanLyPhongHoc quanLyPhongHoc = new QuanLyPhongHoc();
         Scanner sc = new Scanner(System.in);
         int choice;
@@ -20,19 +40,21 @@ public class Test {
             System.out.println("9. Xóa phòng học");
             System.out.println("10. In tổng số phòng học");
             System.out.println("11. In danh sách phòng máy có 60 máy");
+            System.out.println("12 Nhập cứng");
             System.out.println("0. Thoát");
             System.out.print("Lựa chọn: ");
             choice = sc.nextInt();
 
             switch (choice) {
                 case 1:
+                    // Nhập phòng học từ người dùng
                     System.out.println("Chọn loại phòng học:");
                     System.out.println("1. Phòng lý thuyết");
                     System.out.println("2. Phòng máy tính");
                     System.out.println("3. Phòng thí nghiệm");
                     int loaiPhong = sc.nextInt();
                     sc.nextLine(); // Bỏ qua dòng mới sau khi nhập số
-                    
+
                     System.out.print("Nhập mã phòng: ");
                     String maPhong = sc.nextLine();
                     System.out.print("Nhập dãy nhà: ");
@@ -83,6 +105,7 @@ public class Test {
                     }
                     break;
                 case 2:
+                    // Tìm kiếm phòng học
                     System.out.print("Nhập mã phòng cần tìm: ");
                     String maPhongTim = sc.next();
                     PhongHoc phongTimKiem = quanLyPhongHoc.timPhongHoc(maPhongTim);
@@ -93,29 +116,36 @@ public class Test {
                     }
                     break;
                 case 3:
-                    System.out.println("Danh sách phòng học: ");
+                    // In danh sách phòng học
+                	System.out.println("Danh sách phòng học: ");
+                    tieuDe();
                     quanLyPhongHoc.inDanhSachPhongHoc();
                     break;
                 case 4:
+                    // In danh sách phòng đạt chuẩn
                     System.out.println("Danh sách phòng đạt chuẩn: ");
                     quanLyPhongHoc.inDanhSachPhongDatChuan();
                     break;
                 case 5:
+                    // Sắp xếp theo dãy nhà tăng dần
                     quanLyPhongHoc.sapXepTheoDayNhaTangDan();
                     System.out.println("Danh sách phòng sau khi sắp xếp theo dãy nhà tăng dần: ");
                     quanLyPhongHoc.inDanhSachPhongHoc();
                     break;
                 case 6:
+                    // Sắp xếp theo diện tích giảm dần
                     quanLyPhongHoc.sapXepTheoDienTichGiamDan();
                     System.out.println("Danh sách phòng sau khi sắp xếp theo diện tích giảm dần: ");
                     quanLyPhongHoc.inDanhSachPhongHoc();
                     break;
                 case 7:
+                    // Sắp xếp theo số bóng đèn tăng dần
                     quanLyPhongHoc.sapXepTheoSoBongDenTangDan();
                     System.out.println("Danh sách phòng sau khi sắp xếp theo số bóng đèn tăng dần: ");
                     quanLyPhongHoc.inDanhSachPhongHoc();
                     break;
                 case 8:
+                    // Cập nhật số lượng máy tính
                     System.out.print("Nhập mã phòng máy tính cần cập nhật: ");
                     String maPhongMayTinh = sc.next();
                     System.out.print("Nhập số lượng máy tính mới: ");
@@ -127,6 +157,7 @@ public class Test {
                     }
                     break;
                 case 9:
+                    // Xóa phòng học
                     System.out.print("Nhập mã phòng cần xóa: ");
                     String maPhongXoa = sc.next();
                     if (quanLyPhongHoc.xoaPhongHoc(maPhongXoa)) {
@@ -136,13 +167,21 @@ public class Test {
                     }
                     break;
                 case 10:
+                    // In tổng số phòng học
                     System.out.println("Tổng số phòng học: " + quanLyPhongHoc.tongSoPhongHoc());
                     break;
                 case 11:
+                    // In danh sách phòng máy có 60 máy
                     System.out.println("Danh sách phòng máy có 60 máy: ");
                     quanLyPhongHoc.inDanhSachPhongMay60May();
                     break;
+                case 12:
+                    // Nhập cứng
+                    tieuDe();
+                    nhapCung();
+                    break;
                 case 0:
+                    // Thoát chương trình
                     System.out.println("Chương trình kết thúc.");
                     break;
                 default:
@@ -150,5 +189,9 @@ public class Test {
                     break;
             }
         } while (choice != 0);
+    }
+
+    public static void main(String[] args) {
+        nhap();
     }
 }

@@ -1,4 +1,4 @@
-package OnThi.PhongHoc;
+package Tuan6.PhongHoc_Md4;
 
 import java.util.*;
 
@@ -85,4 +85,3 @@ public class QuanLyPhongHoc {
         }
     }
 }
-
